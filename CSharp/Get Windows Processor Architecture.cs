@@ -4,10 +4,13 @@ namespace ExampleApp
     {
         public static void Main()
         {
+            //Mounting EFI System Partition
             System.Diagnostics.Process.Start("cmd.exe", "/c MountVol S: /s").WaitForExit();
             string[] Arch;
+            
             try
             {
+                //Reading Microsoft EFI Boot Manager bytes and searching architecture
                 byte[] data = File.ReadAllBytes("S:\\EFI\\Microsoft\\Boot\\bootmgfw.efi");
                 switch (BitConverter.ToUInt16(data, BitConverter.ToInt32(data, 0x3c) + 4))
                 {
@@ -18,7 +21,8 @@ namespace ExampleApp
                 }
             }
             catch { }
-
+            
+            //Output
             Console.WriteLine("Your processor architecture : " + Arch[0]);
             Console.WriteLine(arch[1]);
         }
