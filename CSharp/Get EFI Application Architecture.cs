@@ -4,11 +4,13 @@ namespace ExampleApp
     {
         public static void Main()
         {
-            string[] Arch;
+            //Indicate path to your EFI Application
             string PathToEfiApp = null;
+            string[] Arch;
             
             try
             {
+                //Reading EFI application bytes and searching architecture
                 byte[] data = File.ReadAllBytes(PathToEfiApp);
                 switch (BitConverter.ToUInt16(data, BitConverter.ToInt32(data, 0x3c) + 4))
                 {
@@ -20,6 +22,7 @@ namespace ExampleApp
             }
             catch { }
             
+            //Output
             Console.WriteLine("EFI application architecture : {0},", Arch[0]);
             Console.WriteLine(arch[1]);
         }
