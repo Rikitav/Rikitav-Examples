@@ -1,6 +1,6 @@
 # Rikitav Examples
-My code examples that i found on internet and writed yourself                                                                         
-You can copy that code and use it in your own projects
+Here will be collected my code examples that I found on the Internet and wrote myself                                                                         
+You can copy this code and use it in your projects
 
 # My group in VKontakte (Only Russia)
 https://vk.com/rikitav
