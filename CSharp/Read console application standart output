@@ -1,0 +1,32 @@
+using System.Diagnostics;
+
+namespace ExampleApp
+{
+    public class ExampleClass
+    {
+        public static void Main()
+        {
+            //Create new process
+            var ExampleProcess = new Process
+            {
+                StartInfo = new ProcessStartInfo
+                {
+                    FileName = "powershell",
+                    Arguments = @"GWMI -namespace root\cimv2 -class win32_volume | FL -property DriveLetter, DriveType, DeviceID",
+                    UseShellExecute = false,
+                    RedirectStandardOutput = true, //necessarily
+                    CreateNoWindow = true //optional
+                }
+            };
+
+            ExampleProcess.Start(); //Executing process
+            ExampleProcess.WaitForExit();
+
+            List<string> Output = new();
+            while (!ExampleProcess.StandardOutput.EndOfStream)
+                Output.Add(ExtMounterProcess.StandardOutput.ReadLine());
+                
+            //Use Output array in foreach to read result or something different
+        }
+    }
+}
